@@ -1,6 +1,8 @@
 package conta.model;
 
-public abstract class ModelConta {
+import conta.repository.ContaRepository;
+
+public abstract class ModelConta implements ContaRepository {
 		
 		private int numero;
 		private int agencia;
@@ -57,29 +59,15 @@ public abstract class ModelConta {
 		public void setSaldo(float saldo) {
 			this.saldo = saldo;
 		}
-		
-		public boolean sacar(float valor) {
-			if(this.saldo < valor)
-			return false;
-			
-			this.setSaldo(this.saldo - valor);
-			return true;
-		}
-		
-		public void depositar(float valor) {
-			
-			this.setSaldo(this.saldo + valor);
-		}
 			
 		public void visualizar() {		
-			System.out.println("**************************");
-			System.out.println("Dados da Conta");
-			System.out.println("**************************");
+			System.out.println("--------Dados da Conta--------");
 			System.out.println("Numero da conta: " + this.numero);
 			System.out.println("Agência da conta: " + this.agencia);
 			System.out.println("Tipo da conta: " + this.tipo);
 			System.out.println("Titular da conta: " + this.titular);
-			System.out.println("Saldo da conta: " + this.saldo);
+			System.out.println("Saldo da conta: " + this.saldo 
+							+ "\n------------------------------");
 		}
 }
 
