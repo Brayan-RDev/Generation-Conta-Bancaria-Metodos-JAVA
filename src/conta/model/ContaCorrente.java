@@ -17,21 +17,21 @@ public class ContaCorrente extends ModelConta{
 		return limite;
 	}
 	
+	public void setLimite(float limite) {
+		this.limite = limite;
+	}
+	
 	@Override
 	public void visualizar() {		
 		System.out.println("--------Dados da Conta--------");
 		System.out.println("Numero da conta: " + getNumero());
-		System.out.println("Agência da conta: " + getAgencia());
+		System.out.println("Agência: " + getAgencia());
 		System.out.println("Tipo da conta: " + getTipo());
-		System.out.println("Titular da conta: " + getTitular());
-		System.out.println("Saldo da conta: " + getSaldo());
-		System.out.println("Limite por saque da conta: " + getLimite()
+		System.out.println("Titular: " + getTitular());
+		System.out.println("Saldo: " + getSaldo());
+		System.out.println("Limite de Crédito: " + getLimite()
 						+ "\n------------------------------");
 	} 
-	
-	public void setLimite(float limite) {
-		this.limite = limite;
-	}
 
 	@Override
 	public void sacar(float valor) {
@@ -70,5 +70,35 @@ public class ContaCorrente extends ModelConta{
 			this.setSaldo(this.getSaldo() - valor);
 			System.out.println("\nValor Transferido: " + Cores.YELLOW + "🔄️" + valor + Cores.RESET + " Para a conta: " + numeroDestino + Cores.RESET);
 		}
+	}
+
+	@Override
+	public void procurarPorNumero(int numero) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void listarTodas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cadastrar(ModelConta conta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void atualizar(ModelConta conta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deletar(int numero) {
+		// TODO Auto-generated method stub
+		
 	}
 }

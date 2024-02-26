@@ -63,10 +63,10 @@ public abstract class ModelConta implements ContaRepository {
 		public void visualizar() {		
 			System.out.println("--------Dados da Conta--------");
 			System.out.println("Numero da conta: " + this.numero);
-			System.out.println("Agência da conta: " + this.agencia);
+			System.out.println("Agência: " + this.agencia);
 			System.out.println("Tipo da conta: " + this.tipo);
-			System.out.println("Titular da conta: " + this.titular);
-			System.out.println("Saldo da conta: " + this.saldo 
+			System.out.println("Titular: " + this.titular);
+			System.out.println("Saldo: " + this.saldo 
 							+ "\n------------------------------");
 		}
 }
