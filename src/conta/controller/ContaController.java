@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import conta.model.ModelConta;
 import conta.repository.ContaRepository;
+import conta.util.Cores;
 
 public class ContaController implements ContaRepository {
 	
@@ -55,7 +56,6 @@ public class ContaController implements ContaRepository {
 		if(conta != null) {
 			if(listaContas.remove(conta) == true) {
 				System.out.println("\nA conta número: " + numero + " foi deletada com sucesso!");
-
 			}
 		}
 		else {
@@ -64,18 +64,60 @@ public class ContaController implements ContaRepository {
 	}
 	
 	@Override
-	public void sacar(float valor) {
+	public void sacar(int numero, float valor) {
+		var conta = buscarNaCollection(numero);
 		
+		if(conta != null) {
+			if (conta.getSaldo() < valor) {
+				System.out.println(Cores.RED + "\nSaldo Insuficiente" + Cores.RESET);
+			}
+			else {
+				conta.setSaldo(conta.getSaldo() - valor);
+				System.out.println(Cores.GREEN + "\nValor sacado: " + Cores.RESET + Cores.RED + "-" + valor + Cores.RESET +" Da conta número: " + numero);
+
+			}
+		}
+		else {
+			System.out.println("\nA conta número: " + numero + " não foi encontrada!");
+		}
 	}
 	
 	@Override
-	public void depositar(float valor) {
+	public void depositar(int numero, float valor) {
+	var conta = buscarNaCollection(numero);
 		
+		if(conta != null) {
+			if (valor < 0) {
+				System.out.println(Cores.RED + "\nDepósito Invalido" + Cores.RESET);
+			}
+			else {
+				conta.setSaldo(conta.getSaldo() + valor);
+				System.out.println("\nValor do depósito:" + Cores.GREEN + "+" + valor + Cores.RESET + " Na conta número: " + numero);
+			}
+		}
+		else {
+			System.out.println("\nA conta número: " + numero + " não foi encontrada!");
+		}
 	}
 	
 	@Override
-	public void transferir(int numeroDestino, float valor) {
+	public void transferir(int numeroOrigem, int numeroDestino, float valor) {
+		var contaOrigem = buscarNaCollection(numeroOrigem);
+		var contaDestino = buscarNaCollection(numeroDestino);
 		
+		if(contaOrigem != null && contaDestino != null) {
+			if(contaOrigem.getSaldo() > valor) {
+				contaOrigem.setSaldo(contaOrigem.getSaldo() - valor);
+				contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+				System.out.println("\nValor Transferido: " + Cores.YELLOW + "🔄️" + valor + Cores.RESET + " Da conta número: " + contaOrigem.getNumero() + " Para a conta: " + contaDestino.getNumero() + Cores.RESET);
+			}
+			else {
+				System.out.println(Cores.RED + "\nSaldo Insuficiente" + Cores.RESET);
+			}
+		}
+		else {
+			System.out.println("\nA Conta de Origem e/ou Destino não foram encontradas ");
+		}
 	}
 	
 	public int gerarNumero(){

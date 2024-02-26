@@ -11,7 +11,7 @@ public interface ContaRepository {
 	public void deletar(int numero);
 	
 	//Métodos Bancarios
-	public void sacar(float valor);
-	public void depositar(float valor);
-	public void transferir(int numeroDestino, float valor);
+	public void sacar(int numero, float valor);
+	public void depositar(int numero, float valor);
+	public void transferir(int numeroOrigem,int numeroDestino, float valor);
 }

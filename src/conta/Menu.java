@@ -15,7 +15,7 @@ public class Menu {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		ContaController contas = new ContaController();
-		int escolha, numero, agencia, aniversario;
+		int escolha, numero, agencia, aniversario, numeroDestino;
 		String titular, tipo;
 		float saldo, limite, valor;
 		
@@ -185,7 +185,7 @@ public class Menu {
 				case 5:{
 					System.out.println("\nApagar a Conta\n\n");
 					
-					System.out.println("\nDigite o número da conta:");
+					System.out.println("\nDigite o número da conta: ");
 					numero = scan.nextInt();
 					scan.nextLine();
 					
@@ -193,6 +193,83 @@ public class Menu {
 					
 					keyPress();
 					break;	
+				}
+				
+				case 6:{
+					System.out.println("\nSaque\n\n");
+					
+					System.out.println("\nDigite o número da conta: ");
+					numero = scan.nextInt();
+					scan.nextLine();
+					
+					do {
+						System.out.println("\nDigite o valor do saque (R$): ");
+						valor = scan.nextInt();
+						scan.nextLine();
+						
+						if(valor <= 0) {
+							System.out.println(Cores.RED + "\nDIGITE UM VALOR MAIOR QUE ZERO!" + Cores.RESET);
+						}
+					}while(valor <= 0);
+					
+					contas.sacar(numero, valor);
+					
+					keyPress();
+					break;
+				}
+				
+				case 7:{
+					System.out.println("\nDepósito\n\n");
+					
+					System.out.println("\nDigite o número da conta: ");
+					numero = scan.nextInt();
+					scan.nextLine();
+					
+					do {
+						System.out.println("\nDigite o valor de depósito (R$): ");
+						valor = scan.nextInt();
+						scan.nextLine();
+						
+						if(valor <= 0) {
+							System.out.println(Cores.RED + "\nDIGITE UM VALOR MAIOR QUE ZERO!" + Cores.RESET);
+						}
+					}while(valor <= 0);
+					
+					contas.depositar(numero, valor);
+					
+					keyPress();
+					break;
+				}
+				
+				case 8:{
+					System.out.println("\nTransferência\n\n");
+					
+					System.out.println("\nDigite o número da conta de Origem: ");
+					numero = scan.nextInt();
+					scan.nextLine();
+					
+					System.out.println("\nDigite o número da conta de Destino: ");
+					numeroDestino = scan.nextInt();
+					scan.nextLine();
+					
+					do {
+						System.out.println("\nDigite o valor do saque (R$): ");
+						valor = scan.nextInt();
+						scan.nextLine();
+						
+						if(valor <= 0) {
+							System.out.println(Cores.RED + "\nDIGITE UM VALOR MAIOR QUE ZERO!" + Cores.RESET);
+						}
+					}while(valor <= 0);
+					
+					contas.transferir(numero, numeroDestino, valor);
+					
+					keyPress();
+					break;
+				}
+				
+				case 9:{
+					break;
 				}
 			}
 		}while(escolha != 9);

@@ -33,40 +33,18 @@ public class ContaPoupanca extends ModelConta {
 	}
 
 	@Override
-	public void sacar(float valor) {
-		if (this.getSaldo() < valor) {
-			System.out.println(Cores.RED + "\nSaldo insuficiente" + Cores.RESET);
-		}
-		else { 
-			this.setSaldo(this.getSaldo() - valor);
-			System.out.println(Cores.GREEN + "\nValor sacado: " + Cores.RESET + Cores.RED + "-" + valor + Cores.RESET);
-		}
+	public void sacar(int numero, float valor) {
+
 	}
 
 	@Override
-	public void depositar(float valor) {
-		if(valor <= 0) {
-			System.out.println(Cores.RED + "Depósito Invalido" + Cores.RESET);
-		}
-		else {
-			this.setSaldo(this.getSaldo() + valor);
-			System.out.println("\nValor do depósito:" + Cores.GREEN + "+" + valor + Cores.RESET);
-		}
+	public void depositar(int numero, float valor) {
 		
 	}
 
 	@Override
-	public void transferir(int numeroDestino, float valor) {
-		if(valor <= 0) {
-			System.out.println(Cores.RED + "Transferência Invalida" + Cores.RESET);
-		}
-		else if (this.getSaldo() < valor) {
-			System.out.println(Cores.RED + "\nSaldo insuficiente" + Cores.RESET);
-		}
-		else {
-			this.setSaldo(this.getSaldo() - valor);
-			System.out.println("\nValor Transferido: " + Cores.YELLOW + "🔄️" + valor + Cores.RESET + "/nPara a conta de número: " + numeroDestino + Cores.RESET);
-		}
+	public void transferir(int numeroOrigem, int numeroDestino, float valor) {
+		
 	}
 
 	@Override
